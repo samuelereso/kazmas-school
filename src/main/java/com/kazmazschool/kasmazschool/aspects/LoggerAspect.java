@@ -32,4 +32,5 @@ public class LoggerAspect {
     public void logException(JoinPoint joinPoint, Exception ex) {
         log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());
     }
+
 }

@@ -8,10 +8,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 
-@Entity
-@Table(name = "School")
+@Entity(name = "TableSchool")
 @Data
 public class Contact extends BaseEntity {
+    
     @Id
     @Column(nullable= false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +27,12 @@ public class Contact extends BaseEntity {
     @Size(min=3, message="Name must be at least 3 characters long")
     private String name;
 
-    @Column(nullable=false)
+    @Column(nullable=false,unique=true)
     @NotBlank(message="Mobile number must not be blank")
     @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
     private String mobileNum;
 
-    @Column(nullable=false)
+    @Column(nullable=false,unique=true)
     @NotBlank(message="Email must not be blank")
     @Email(message = "Please provide a valid email address" )
     private String email;
@@ -46,6 +46,11 @@ public class Contact extends BaseEntity {
     @NotBlank(message="Message must not be blank")
     @Size(min=10, message="Message must be at least 10 characters long")
     private String message;
+
+    @Column(nullable=false)
+    @NotBlank(message="pin  must not be blank")
+    @Size(min=4,max=6)
+    private Integer pin;
 
     @Column(nullable=false)
     private String status;
